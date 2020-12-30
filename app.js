@@ -30,6 +30,9 @@ document.addEventListener('click', (event) => {
     ) {
         console.log('open');
         event.preventDefault();
+
+        const modal = event.target.closest(`.${CLASS_LIST.MODAL}`);
+        modal.classList.remove(CLASS_LIST.MODAL_ACTIVE);
     }
 });
 
