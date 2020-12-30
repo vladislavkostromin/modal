@@ -1,0 +1,54 @@
+body{
+    margin: 0;
+    font-family: 'Audiowide', cursive;
+}
+
+.section{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(20, 147, 220);
+    font-size: 40px;
+}
+
+.section--1{
+    background-color: rgb(84, 84, 85);
+}
+.section--2{
+    background-color: rgb(166, 166, 214);
+}
+.section--3{
+    background-color: rgb(43, 43, 192);
+}
+
+.link{
+    color: rgb(20, 147, 220);
+    transition: all 0.2s linear;
+    margin: 10px;
+}
+
+.link:hover{
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.modal{
+
+}
+
+.btn-close{
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+    background-color: rgb(166, 166, 214);
+    border: 0;
+    border-radius: 5px;
+    transition: all 0.2s linear;
+}
+
+.btn-close:hover{
+    opacity: 0.7;
+}
