@@ -102,7 +102,7 @@ body{
 
 .modal__dialog-header-content {
     flex-grow: 1;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .modal__dialog-header-close {
