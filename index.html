@@ -13,14 +13,14 @@
 
     <section class="section section--1">
         <a class="link js-modal-open" href="#modal-1"><span>Open modal 1</span></a> 
-        <a class="link" href="#modal-2">Open modal 2</a>
+        <a class="link js-modal-open" href="#modal-2">Open modal 2</a>
     </section>
     <section class="section section--2">2</section>
     <section class="section section--3">3</section>
 
 
-    <div class="modal" id="modal-1">
-        <div class="modal__dialog modal__dialog--m">
+    <div class="modal modal--m" id="modal-1">
+        <div class="modal__dialog">
             <div class="modal__dialog-header">
                 <div class="modal__dialog-header-content">
                     Modal window 1
@@ -30,15 +30,16 @@
                 </div>
             </div>
             <div class="modal__dialog-body">
-                modal__dialog-body
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde adipisci vero ullam voluptates maiores placeat recusandae corrupti impedit totam, commodi quasi corporis, ipsa asperiores nihil sed nemo delectus. Blanditiis, veritatis?
             </div>
+            <button id="js-add-content-temp">Add content</button>
             <div class="modal__dialog-footer">
                 <button class="js-modal-close btn-close">Close</button>
             </div>
         </div>
     </div>
 
-    <!-- <div class="modal" id="modal-2">
+    <div class="modal modal--s" id="modal-2">
         <div class="modal__dialog">
             <div class="modal__dialog-header">
                 <div class="modal__dialog-header-content">
@@ -49,13 +50,13 @@
                 </div>
             </div>
             <div class="modal__dialog-body">
-                modal__dialog-body
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde adipisci vero ullam voluptates maiores placeat recusandae corrupti impedit totam, commodi quasi corporis, ipsa asperiores nihil sed nemo delectus. Blanditiis, veritatis?
             </div>
             <div class="modal__dialog-footer">
                 <button class="js-modal-close btn-close">Close</button>
             </div>
         </div>
-    </div> -->
+    </div>
 
 
 <script src="/app.js"></script>   

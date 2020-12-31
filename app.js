@@ -1,3 +1,4 @@
+let resizeObserver = null;
 const CLASS_LIST = {
     MODAL: 'modal',
     MODAL_ACTIVE: 'modal--active',
@@ -7,10 +8,19 @@ const CLASS_LIST = {
     TRIGGER_CLOSE: 'js-modal-close'
 };
 
+const showScroll = (event) => {
+    if (event.propertyName === 'transform') {
+
+        document.body.style.paddingRight = '';
+        document.body.style.overflow = 'visible';
+
+        event.target.closest(`.${CLASS_LIST.MODAL}`).removeEventListener('transitionend', showScroll);
+    }
+}
+
 document.addEventListener('click', (event) => {
     // open
     if (event.target.closest(`.${CLASS_LIST.TRIGGER_OPEN}`)) {
-        console.log('open');
         event.preventDefault();
 
         const target = event.target.closest(`.${CLASS_LIST.TRIGGER_OPEN}`);
@@ -21,6 +31,8 @@ document.addEventListener('click', (event) => {
         document.body.style.overflow = 'hidden';
 
         modal.classList.add(CLASS_LIST.MODAL_ACTIVE);
+
+        bindResizeObserver(modal);
     }
 
     // close
@@ -28,11 +40,14 @@ document.addEventListener('click', (event) => {
         event.target.closest(`.${CLASS_LIST.TRIGGER_CLOSE}`) ||
         event.target.classList.contains(CLASS_LIST.MODAL_ACTIVE)
     ) {
-        console.log('open');
         event.preventDefault();
 
         const modal = event.target.closest(`.${CLASS_LIST.MODAL}`);
         modal.classList.remove(CLASS_LIST.MODAL_ACTIVE);
+
+        unbindResizeObserver(modal);
+
+        modal.addEventListener('transitionend', showScroll);
     }
 });
 
@@ -51,4 +66,33 @@ const getScrollbarWidth = () => {
     document.body.removeChild(item);
 
     return ScrollbarWidth
-}
+};
+
+
+const bindResizeObserver = (modal) => {
+    const content = modal.querySelector(`.${CLASS_LIST.MODAL_DIALOG_BODY}`);
+
+    const toggleShadows = () => {
+        modal.classList.toggle(
+            CLASS_LIST.MODAL_HAS_SCROLL,
+            content.scrollHeight > content.clientHeight
+        );
+    };
+
+    resizeObserver = new ResizeObserver(toggleShadows);
+
+    resizeObserver.observe(content);
+};
+
+const unbindResizeObserver = (modal) => {
+    const content = modal.querySelector(`.${CLASS_LIST.MODAL_DIALOG_BODY}`);
+    resizeObserver.unobserve(content);
+    resizeObserver = null;
+};
+
+document.getElementById('js-add-content-temp').addEventListener('click', (event) => {
+    const div = document.createElement('div');
+    div.textContent = 'Text content';
+    div.style.height = '1000px';
+    document.querySelector(`.${CLASS_LIST.MODAL_DIALOG_BODY}`).appendChild(div);
+});
